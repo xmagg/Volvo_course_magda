@@ -1,0 +1,14 @@
+C:\Magda\Volvo Course\homework\homework_1\homework_1\bin\Debug\net7.0\homework_1.exe
+C:\Magda\Volvo Course\homework\homework_1\homework_1\bin\Debug\net7.0\homework_1.deps.json
+C:\Magda\Volvo Course\homework\homework_1\homework_1\bin\Debug\net7.0\homework_1.runtimeconfig.json
+C:\Magda\Volvo Course\homework\homework_1\homework_1\bin\Debug\net7.0\homework_1.dll
+C:\Magda\Volvo Course\homework\homework_1\homework_1\bin\Debug\net7.0\homework_1.pdb
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.AssemblyInfoInputs.cache
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.AssemblyInfo.cs
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.csproj.CoreCompileInputs.cache
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.dll
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\refint\homework_1.dll
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.pdb
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\homework_1.genruntimeconfig.cache
+C:\Magda\Volvo Course\homework\homework_1\homework_1\obj\Debug\net7.0\ref\homework_1.dll
