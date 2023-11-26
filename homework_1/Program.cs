@@ -50,19 +50,48 @@ namespace homework_1
 
         static void Main(string[] args)
         {
-            double number1, number2;
-            int operation;
+            double number1 = 0, number2 = 0;
+            int operation = 0;
 
             do
             { 
 
                 Console.WriteLine("This is the Calculator App");
 
-                Console.Write("Enter the first number:");
-                number1 = Convert.ToDouble(Console.ReadLine());
+                int flag2;
+                do
+                {
+                    Console.Write("Enter the first number:");
+                    try
+                    {
+                        number1 = Convert.ToDouble(Console.ReadLine());
+                        flag2 = 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        flag2 = 1;
+                    }
+                }
+                while (flag2 == 1);
 
-                Console.Write("Enter the second number:");
-                number2 = Convert.ToDouble(Console.ReadLine());
+                int flag3;
+                do
+                {
+                    Console.Write("Enter the second number:");
+                    try
+                    {
+                        number2 = Convert.ToDouble(Console.ReadLine());
+                        flag3 = 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        flag3 = 1;
+                    }
+                }
+                while (flag3 == 1);
+
 
                 Console.WriteLine("Choose which math operation to perform:");  // choosing operation
                 Console.WriteLine("1. Addition");
@@ -73,32 +102,56 @@ namespace homework_1
                 Console.WriteLine("6. Factorial");
                 Console.WriteLine("7. Exit program");
 
-                Console.Write("Enter the operation number: ");
-                operation = Convert.ToInt32(Console.ReadLine());  // input
+                int flag = 1;
+                do
+                {
+                    Console.Write("Enter the operation number: ");
+                    try
+                    {
+                        operation = Convert.ToInt32(Console.ReadLine());
+                        if(operation>0 && operation<7)
+                        {
+                            flag = 0;
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        //Console.WriteLine("Invalid input");
+                        flag = 1;
+                    }
+
+                    
+                }
+                while (flag==1);
+
+
 
             
                 switch (operation)
                 {
                     case 1:
-                        Console.WriteLine("Result= " + number1 + " + " + number2 + " = " + Addition(number1, number2));
+                        Console.WriteLine("Result= " + number1 + " + " + number2 + " = " + Addition(number1, number2) + "\n");
                         break;
                     case 2:
-                        Console.WriteLine("Result= " + number1 + " - " + number2 + " = " + Subtraction(number1, number2));
+                        Console.WriteLine("Result= " + number1 + " - " + number2 + " = " + Subtraction(number1, number2) + "\n");
                         break;
                     case 3:
-                        Console.WriteLine("Result= " + number1 + " * " + number2 + " = " + Multiplication(number1, number2));
+                        Console.WriteLine("Result= " + number1 + " * " + number2 + " = " + Multiplication(number1, number2) + "\n");
                         break;
                     case 4:
                         if (number2 != 0)
-                            Console.WriteLine("Result= " + number1 + " / " + number2 + " = " + Division(number1, number2));
+                            Console.WriteLine("Result= " + number1 + " / " + number2 + " = " + Division(number1, number2) + "\n");
                         else
                             Console.WriteLine("You can't divide by zero!");
                         break;
                     case 5:
-                        Console.WriteLine("Result= " + number1 + " ^ " + number2 + " = " + Exponentiation(number1, number2));
+                        Console.WriteLine("Result= " + number1 + " ^ " + number2 + " = " + Exponentiation(number1, number2) + "\n");
                         break;
                     case 6:
-                        Console.WriteLine("Result= " + number1 + "! = " + Factorial((int)number1));
+                        Console.WriteLine("Result= " + number1 + "! = " + Factorial((int)number1) + "\n");
+                        break;
+                    case 7:
                         break;
                     default:
                         Console.WriteLine("Invalid operation!");
@@ -106,7 +159,7 @@ namespace homework_1
                 }
             }
 
-            while (operation <= 6);
+            while (operation != 7);
 
         }
     }
