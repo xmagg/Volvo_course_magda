@@ -74,7 +74,7 @@ namespace homework_1
                 Console.WriteLine("7. Exit program");
 
                 Console.Write("Enter the operation number: ");
-                operation = Convert.ToInt32(Console.ReadLine());
+                operation = Convert.ToInt32(Console.ReadLine());  // input
 
             
                 switch (operation)
