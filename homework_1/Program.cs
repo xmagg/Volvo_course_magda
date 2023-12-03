@@ -109,7 +109,7 @@ namespace homework_1
                     try
                     {
                         operation = Convert.ToInt32(Console.ReadLine());
-                        if(operation>0 && operation<7)
+                        if(operation>0 && operation<8)
                         {
                             flag = 0;
                         }
