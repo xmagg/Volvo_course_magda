@@ -131,25 +131,25 @@ namespace homework_1
                 switch (operation)
                 {
                     case 1:
-                        Console.WriteLine("Result= " + number1 + " + " + number2 + " = " + Addition(number1, number2) + "\n");
+                        Console.WriteLine($"Result= {number1} + {number2} = {Addition(number1, number2)}\n");
                         break;
                     case 2:
-                        Console.WriteLine("Result= " + number1 + " - " + number2 + " = " + Subtraction(number1, number2) + "\n");
+                        Console.WriteLine($"Result= {number1} - {number2} = {Subtraction(number1, number2)}\n");
                         break;
                     case 3:
-                        Console.WriteLine("Result= " + number1 + " * " + number2 + " = " + Multiplication(number1, number2) + "\n");
+                        Console.WriteLine($"Result= {number1} * {number2} = {Multiplication(number1, number2)}\n");
                         break;
                     case 4:
                         if (number2 != 0)
-                            Console.WriteLine("Result= " + number1 + " / " + number2 + " = " + Division(number1, number2) + "\n");
+                            Console.WriteLine($"Result= {number1} / {number2} = {Division(number1, number2)}\n");
                         else
                             Console.WriteLine("You can't divide by zero!");
                         break;
                     case 5:
-                        Console.WriteLine("Result= " + number1 + " ^ " + number2 + " = " + Exponentiation(number1, number2) + "\n");
+                        Console.WriteLine($"Result= {number1} ^ {number2} = {Exponentiation(number1, number2)}\n");
                         break;
                     case 6:
-                        Console.WriteLine("Result= " + number1 + "! = " + Factorial((int)number1) + "\n");
+                        Console.WriteLine($"Result= {number1}! = {Factorial((int)number1)}\n");
                         break;
                     case 7:
                         break;
