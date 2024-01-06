@@ -1,0 +1,110 @@
+[
+  {
+    "Id": 1,
+    "Brand": "Toyota",
+    "Model": "Aygo",
+    "YearOfManufacture": 2023,
+    "Color": "Red",
+    "Price": 19000,
+    "RegistrationNumber": "ABC123",
+    "Mileage": 2000,
+    "SpecificCarModelCoefficient": 0.06,
+    "LesseeRating": 2
+  },
+  {
+    "Id": 2,
+    "Brand": "Toyota",
+    "Model": "Corolla",
+    "YearOfManufacture": 2019,
+    "Color": "Blue",
+    "Price": 23000,
+    "RegistrationNumber": "ABC456",
+    "Mileage": 30000,
+    "SpecificCarModelCoefficient": 0.04,
+    "LesseeRating": 3
+  },
+  {
+    "Id": 3,
+    "Brand": "Toyota",
+    "Model": "Yaris",
+    "YearOfManufacture": 2020,
+    "Color": "Green",
+    "Price": 18500,
+    "RegistrationNumber": "ABC789",
+    "Mileage": 16000,
+    "SpecificCarModelCoefficient": 0.04,
+    "LesseeRating": 4
+  },
+  {
+    "Id": 4,
+    "Brand": "Volkswagen",
+    "Model": "Transit",
+    "YearOfManufacture": 2011,
+    "Color": "Gray",
+    "Price": 30000,
+    "RegistrationNumber": "ABC012",
+    "Mileage": 196000,
+    "ModelCoefficient": 0.05,
+    "CargoWeight": 1300
+  },
+  {
+    "Id": 5,
+    "Brand": "Volkswagen",
+    "Model": "The golf",
+    "YearOfManufacture": 2019,
+    "Color": "Purple",
+    "Price": 26000,
+    "RegistrationNumber": "ABC013",
+    "Mileage": 74000,
+    "ModelCoefficient": 0.05,
+    "CargoWeight": 1500
+  },
+  {
+    "Id": 6,
+    "Brand": "Volkswagen",
+    "Model": "The Touran",
+    "YearOfManufacture": 2022,
+    "Color": "Blue",
+    "Price": 29000,
+    "RegistrationNumber": "ABC019",
+    "Mileage": 30000,
+    "ModelCoefficient": 0.04,
+    "CargoWeight": 1200
+  },
+  {
+    "Id": 7,
+    "Brand": "BMW",
+    "Model": "X5",
+    "YearOfManufacture": 2022,
+    "Color": "White",
+    "Price": 28000,
+    "RegistrationNumber": "ABC014",
+    "Mileage": 11000,
+    "SpecificCarModelCoefficient": 0.03,
+    "LesseeRating": 3
+  },
+  {
+    "Id": 8,
+    "Brand": "BMW",
+    "Model": "RX",
+    "YearOfManufacture": 2023,
+    "Color": "Silver",
+    "Price": 29000,
+    "RegistrationNumber": "ABC015",
+    "Mileage": 4000,
+    "SpecificCarModelCoefficient": 0.04,
+    "LesseeRating": 4
+  },
+  {
+    "Id": 9,
+    "Brand": "BMW",
+    "Model": "CT5",
+    "YearOfManufacture": 2021,
+    "Color": "Blue",
+    "Price": 29000,
+    "RegistrationNumber": "ABC016",
+    "Mileage": 16000,
+    "SpecificCarModelCoefficient": 0.03,
+    "LesseeRating": 3
+  }
+]
