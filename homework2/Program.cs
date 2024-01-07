@@ -71,6 +71,12 @@ namespace homework_2
     // container class
     public class VehicleFleet
     {
+        public int BrandQuantity = 0;
+        public int ColorQuantity = 0;
+
+        public string[] BrandArray = { };
+        public string[] ColorArray = { };
+
         private List<Vehicle> vehicles = new List<Vehicle>();
 
         public void AddVehicle(Vehicle vehicle)
@@ -157,107 +163,104 @@ namespace homework_2
                 return false;
             }).ToList();
         }
-    }
-}
-
-class Program
-{
-    static void Main(string[] args)
-    {
-        int BrandQuantity = 0;
-        int ColorQuantity = 0;
-
-        string[] BrandArray= { };
-        string[] ColorArray= { };
-
-        VehicleFleet fleet = new VehicleFleet();
-        String jsonString = new StreamReader("cars.json").ReadToEnd();
-
-        // Create a JsonNode DOM from a JSON string.
-        JsonNode carsNode = JsonNode.Parse(jsonString);
-
-        JsonArray carsArray = carsNode.AsArray();
-        for(int i=0; i<carsArray.Count; i++) 
+        public void ReadData(string jsonfile)
         {
-            if (!BrandArray.Contains(carsArray[i]["Brand"].ToString())) // if is not
-            {
-                BrandArray = BrandArray.Append(carsArray[i]["Brand"].ToString()).ToArray();
-                BrandQuantity++;
-            }
+            String jsonString = new StreamReader(jsonfile).ReadToEnd();
 
-            if (!ColorArray.Contains(carsArray[i]["Color"].ToString())) // if is not
-            {
-                ColorArray = ColorArray.Append(carsArray[i]["Color"].ToString()).ToArray();
-                ColorQuantity++;
-            }
+            // Create a JsonNode DOM from a JSON string.
+            JsonNode carsNode = JsonNode.Parse(jsonString);
 
-            if (carsArray[i].ToString().Contains("LesseeRating"))  //passenger car
+            JsonArray carsArray = carsNode.AsArray();
+            for (int i = 0; i < carsArray.Count; i++)
             {
-                fleet.AddVehicle(new PassengerVehicle
+                if (!BrandArray.Contains(carsArray[i]["Brand"].ToString())) // if is not
                 {
-                    Id = (int)carsArray[i]["Id"],
-                    Brand = carsArray[i]["Brand"].ToString(),
-                    Model = carsArray[i]["Model"].ToString(),
-                    YearOfManufacture = (int)carsArray[i]["YearOfManufacture"],
-                    Color = carsArray[i]["Color"].ToString(),
-                    Price = (decimal)carsArray[i]["Price"],
-                    RegistrationNumber = carsArray[i]["RegistrationNumber"].ToString(),
-                    Mileage = (int)carsArray[i]["Mileage"],
-                    SpecificCarModelCoefficient = (double)carsArray[i]["SpecificCarModelCoefficient"],
-                    LesseeRating = (int)carsArray[i]["LesseeRating"]
-                });
+                    BrandArray = BrandArray.Append(carsArray[i]["Brand"].ToString()).ToArray();
+                    BrandQuantity++;
+                }
 
-            }
-            else
-            {
-                fleet.AddVehicle(new CargoVehicle
+                if (!ColorArray.Contains(carsArray[i]["Color"].ToString())) // if is not
                 {
-                    Id = (int)carsArray[i]["Id"],
-                    Brand = carsArray[i]["Brand"].ToString(),
-                    Model = carsArray[i]["Model"].ToString(),
-                    YearOfManufacture = (int)carsArray[i]["YearOfManufacture"],
-                    Color = carsArray[i]["Color"].ToString(),
-                    Price = (decimal)carsArray[i]["Price"],
-                    RegistrationNumber = carsArray[i]["RegistrationNumber"].ToString(),
-                    Mileage = (int)carsArray[i]["Mileage"],
-                    ModelCoefficient = (double)carsArray[i]["ModelCoefficient"],
-                    CargoWeight = (double)carsArray[i]["CargoWeight"]
-                });
+                    ColorArray = ColorArray.Append(carsArray[i]["Color"].ToString()).ToArray();
+                    ColorQuantity++;
+                }
 
+                if (carsArray[i].ToString().Contains("LesseeRating"))  //passenger car
+                {
+                    AddVehicle(new PassengerVehicle
+                    {
+                        Id = (int)carsArray[i]["Id"],
+                        Brand = carsArray[i]["Brand"].ToString(),
+                        Model = carsArray[i]["Model"].ToString(),
+                        YearOfManufacture = (int)carsArray[i]["YearOfManufacture"],
+                        Color = carsArray[i]["Color"].ToString(),
+                        Price = (decimal)carsArray[i]["Price"],
+                        RegistrationNumber = carsArray[i]["RegistrationNumber"].ToString(),
+                        Mileage = (int)carsArray[i]["Mileage"],
+                        SpecificCarModelCoefficient = (double)carsArray[i]["SpecificCarModelCoefficient"],
+                        LesseeRating = (int)carsArray[i]["LesseeRating"]
+                    });
+                }
+                else
+                {
+                    AddVehicle(new CargoVehicle
+                    {
+                        Id = (int)carsArray[i]["Id"],
+                        Brand = carsArray[i]["Brand"].ToString(),
+                        Model = carsArray[i]["Model"].ToString(),
+                        YearOfManufacture = (int)carsArray[i]["YearOfManufacture"],
+                        Color = carsArray[i]["Color"].ToString(),
+                        Price = (decimal)carsArray[i]["Price"],
+                        RegistrationNumber = carsArray[i]["RegistrationNumber"].ToString(),
+                        Mileage = (int)carsArray[i]["Mileage"],
+                        ModelCoefficient = (double)carsArray[i]["ModelCoefficient"],
+                        CargoWeight = (double)carsArray[i]["CargoWeight"]
+                    });
+                }
             }
         }
+    }
 
-        int choice, choice2, choice3;
-
-        do
+    public class Menu
+    {
+        public int choice, choice2, choice3;
+        JsonArray menuArray;
+        public void DisplayMenu()
         {
+            String jsonString = new StreamReader("menu.json").ReadToEnd();
+            JsonNode menuNode = JsonNode.Parse(jsonString);
+            menuArray = menuNode.AsArray();
+
             Console.Clear();   // clear the screen
             Console.WriteLine("Company X, fleet management system:\n\n");
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("1. Count of vehicles based on brand: ");
-            Console.WriteLine("2. Count of vehicles with exceeding tenure: ");
-            Console.WriteLine("3. Count of total fleet value: ");
-            Console.WriteLine("4. Count of vehicles with certain preferences: ");
+            for (int i = 0; i < menuArray.Count(); i++)
+            {
+                Console.WriteLine(i + ". " + menuArray[i]);
+            }
             Console.Write("Choose one from above:");
-            choice = Convert.ToInt32(Console.ReadLine());
+        }
+
+        public void SelectMenu(VehicleFleet fleet)
+        {
+            choice = ChooseItem(0, menuArray.Count);
             switch (choice)
             {
                 case 1:       // a)
                     Console.Write("Select ");
-                    for(int i=0; i<BrandQuantity; i++)  
+                    for (int i = 0; i < fleet.BrandQuantity; i++)
                     {
-                        Console.Write(i+1);
-                        Console.Write("-" + BrandArray[i]+"  ");
+                        Console.Write(i + 1);
+                        Console.Write("-" + fleet.BrandArray[i] + "  ");
                     }
                     Console.Write(":");
-                    choice2 = Convert.ToInt32(Console.ReadLine());
-                    var vehiclesByBrand = fleet.ListVehiclesByBrand(BrandArray[choice2 - 1]);
-                    Console.WriteLine("\nCount of " + BrandArray[choice2 - 1] + "'s: " + vehiclesByBrand.Count);
+                    choice2 = ChooseItem(1, fleet.BrandQuantity+1);
+                    var vehiclesByBrand = fleet.ListVehiclesByBrand(fleet.BrandArray[choice2 - 1]);
+                    Console.WriteLine("\nCount of " + fleet.BrandArray[choice2 - 1] + "'s: " + vehiclesByBrand.Count);
                     Console.WriteLine("Id  Brand       Model       RegistNum   Color    YearOfManuf  Price     Mileage");
                     for (int i = 0; i < vehiclesByBrand.Count; i++)
                     {
                         Console.Write("{0,2}  {1,-12}{2,-12}{3,-12}", vehiclesByBrand[i].Id, vehiclesByBrand[i].Brand, vehiclesByBrand[i].Model, vehiclesByBrand[i].RegistrationNumber);
-                        Console.Write("{0,-9}{1,-13}{2,-10}{3,-10}\n", vehiclesByBrand[i].Color, vehiclesByBrand[i].YearOfManufacture, vehiclesByBrand[i].Price, vehiclesByBrand[i].Mileage);
+                        Console.Write("{0,-9}{1,-13}{2,-10}{3,8}\n", vehiclesByBrand[i].Color, vehiclesByBrand[i].YearOfManufacture, vehiclesByBrand[i].Price, vehiclesByBrand[i].Mileage);
                     }
                     Console.Write("\nTo come back to the main menu press enter.");
                     Console.ReadLine();
@@ -270,7 +273,7 @@ class Program
                     for (int i = 0; i < vehiclesExceedingTenure.Count; i++)
                     {
                         Console.Write("{0,2}  {1,-12}{2,-12}{3,-12}", vehiclesExceedingTenure[i].Id, vehiclesExceedingTenure[i].Brand, vehiclesExceedingTenure[i].Model, vehiclesExceedingTenure[i].RegistrationNumber);
-                        Console.Write("{0,-9}{1,-13}{2,-10}{3,-10}\n", vehiclesExceedingTenure[i].Color, vehiclesExceedingTenure[i].YearOfManufacture, vehiclesExceedingTenure[i].Price, vehiclesExceedingTenure[i].Mileage);
+                        Console.Write("{0,-9}{1,-13}{2,-10}{3,8}\n", vehiclesExceedingTenure[i].Color, vehiclesExceedingTenure[i].YearOfManufacture, vehiclesExceedingTenure[i].Price, vehiclesExceedingTenure[i].Mileage);
                     }
                     Console.Write("\nTo come back to the main menu press enter.");
                     Console.ReadLine();
@@ -284,47 +287,85 @@ class Program
                     break;
 
                 case 4:
-        
+
                     Console.Write("Select ");
-                    for (int i = 0; i < BrandQuantity; i++)
+                    for (int i = 0; i < fleet.BrandQuantity; i++)
                     {
                         Console.Write(i + 1);
-                        Console.Write("-" + BrandArray[i] + "  ");
+                        Console.Write("-" + fleet.BrandArray[i] + "  ");
                     }
                     Console.Write(":");
-                    choice2 = Convert.ToInt32(Console.ReadLine());
+                    choice2 = ChooseItem(1, fleet.BrandQuantity + 1);
                     Console.Write("\nSelect ");
-                    for (int i = 0; i < ColorQuantity; i++)
+                    for (int i = 0; i < fleet.ColorQuantity; i++)
                     {
                         Console.Write(i + 1);
-                        Console.Write("-" + ColorArray[i] + "  ");
+                        Console.Write("-" + fleet.ColorArray[i] + "  ");
                     }
                     Console.Write(":");
-                    choice3 = Convert.ToInt32(Console.ReadLine());
-        
+                    choice3 = ChooseItem(1, fleet.ColorQuantity + 1);
+
                     // Querying the fleet
-                    List<Vehicle> vehiclesByPreference = fleet.ListVehiclesByPreference(BrandArray[choice2-1], ColorArray[choice3-1]);
+                    List<Vehicle> vehiclesByPreference = fleet.ListVehiclesByPreference(fleet.BrandArray[choice2 - 1], fleet.ColorArray[choice3 - 1]);
                     Console.WriteLine("\nCount of vehicles with preferences: " + vehiclesByPreference.Count);
                     Console.WriteLine("Id  Brand       Model       RegistNum   Color    YearOfManuf  Price     Mileage");
                     for (int i = 0; i < vehiclesByPreference.Count; i++)
                     {
                         Console.Write("{0,2}  {1,-12}{2,-12}{3,-12}", vehiclesByPreference[i].Id, vehiclesByPreference[i].Brand, vehiclesByPreference[i].Model, vehiclesByPreference[i].RegistrationNumber);
-                        Console.Write("{0,-9}{1,-13}{2,-10}{3,-10}\n", vehiclesByPreference[i].Color, vehiclesByPreference[i].YearOfManufacture, vehiclesByPreference[i].Price, vehiclesByPreference[i].Mileage);
+                        Console.Write("{0,-9}{1,-13}{2,-10}{3,8}\n", vehiclesByPreference[i].Color, vehiclesByPreference[i].YearOfManufacture, vehiclesByPreference[i].Price, vehiclesByPreference[i].Mileage);
                     }
                     Console.Write("\nTo come back to the main menu press enter.");
                     Console.ReadLine();
                     break;
-
+                case 5:
+                    var vehiclesRequiringMaintenance = fleet.ListVehiclesRequiringMaintenance();
+                    Console.WriteLine("\nCount of vehicles needing maintenance: " + vehiclesRequiringMaintenance.Count);
+                    Console.WriteLine("Id  Brand       Model       RegistNum   Color    YearOfManuf  Price     Mileage");
+                    for (int i = 0; i < vehiclesRequiringMaintenance.Count; i++)
+                    {
+                        Console.Write("{0,2}  {1,-12}{2,-12}{3,-12}", vehiclesRequiringMaintenance[i].Id, vehiclesRequiringMaintenance[i].Brand, vehiclesRequiringMaintenance[i].Model, vehiclesRequiringMaintenance[i].RegistrationNumber);
+                        Console.Write("{0,-9}{1,-13}{2,-10}{3,8}\n", vehiclesRequiringMaintenance[i].Color, vehiclesRequiringMaintenance[i].YearOfManufacture, vehiclesRequiringMaintenance[i].Price, vehiclesRequiringMaintenance[i].Mileage);
+                    }
+                    Console.Write("\nTo come back to the main menu press enter.");
+                    Console.ReadLine();
+                    break;
             }
-        } while (choice != 0);
-               
-
-        var vehiclesRequiringMaintenance = fleet.ListVehiclesRequiringMaintenance();
-        Console.WriteLine("\ne) Count of vehicles needing maintenance: " + vehiclesRequiringMaintenance.Count);
-        for (int i = 0; i < vehiclesRequiringMaintenance.Count; i++)
-        {
-            Console.Write("Id:" + vehiclesRequiringMaintenance[i].Id + "  Model: " + vehiclesRequiringMaintenance[i].Model + "\n");
         }
+        public int ChooseItem(int StartNo, int LastNo)
+        {
+            do
+            {
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (Exception e)
+                {
+                    Console.Write("Invalid input, try again:");
+                    choice = -1;
+                }
+                if((choice < StartNo || choice >= LastNo) && choice !=-1)
+                    Console.Write("Invalid input, try again:");
+            }
+            while (choice < StartNo || choice >= LastNo);
 
+            return choice;
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Menu menu = new Menu();
+        VehicleFleet Mainfleet = new VehicleFleet();
+        Mainfleet.ReadData("cars.json");
+
+        do
+        {
+            menu.DisplayMenu();
+            menu.SelectMenu(Mainfleet);
+        } while (menu.choice != 0);
     }
 }
